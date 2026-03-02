@@ -64,7 +64,7 @@ We do **not** primarily target: general-purpose “run any LLM locally” users,
 ## 4. In scope
 
 - **Bootstrap and portability:** One-command setup (e.g. `./bootstrap.sh` or `make deps`) that produces a folder that can be copied and run offline.  
-- **Local serving:** llama-server (llama.cpp) serving a chosen model (default: Nanbeige/Nanbeige4.1-3B), CPU-only.  
+- **Local serving:** llama-server (llama.cpp) serving a chosen model (default: Qwen/Qwen3.5-2B via GGUF for CPU, same model HF for GPU).  
 - **Codex integration:** Config and scripts so Codex uses the local llama-server endpoint (OpenAI-compatible API), with state confined to the project (e.g. `CODEX_HOME`).  
 - **Documentation:** Clear README (including for non-English speakers where applicable), version baseline (VERSIONS.md), and troubleshooting for the “copy in and run” workflow.  
 - **Operational usability:** Model selection (including quantized/GGUF for resource-constrained or CPU-only boxes), port/config overrides, and basic testing (e.g. `make test`) to validate the stack.

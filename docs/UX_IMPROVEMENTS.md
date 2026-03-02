@@ -24,10 +24,10 @@
 
 ### 3. CPU/GPU 默认模型不一致且文档易混
 
-- **现状**：CPU 默认是 GGUF 仓库（Edge-Quant/...），vLLM 默认是 HF 仓库（Nanbeige/Nanbeige4.1-3B）。README 里「默认模型」若只写一个名字，容易让人以为两边是同一个模型。
+- **现状**：CPU 默认是 GGUF 仓库（bartowski/Qwen_Qwen3.5-2B-GGUF），vLLM 默认是 HF 仓库（Qwen/Qwen3.5-2B）。README 里「默认模型」若只写一个名字，容易让人以为两边是同一个模型。
 - **问题**：换模型、拷盘、重装时容易搞错「我到底在用哪个模型」。
 - **建议**：
-  - README 明确写成两行：「CPU 默认：…（GGUF）」「GPU 默认：…（HuggingFace）」，并注明「名字不同，但同属 Nanbeige 4.1 3B 系列」。
+  - README 明确写成两行：「CPU 默认：…（GGUF）」「GPU 默认：…（HuggingFace）」，并注明「同一模型 Qwen3.5-2B，格式不同」。
   - Quick start 里第一步 bootstrap 的说明里，写清「会下载 CPU 用模型（GGUF）并生成配置」，避免和 GPU 模型混淆。
 
 ### 4. 「两个终端」的约束不够显眼
@@ -60,7 +60,7 @@
 | 优先级 | 改进项 | 预期效果 | 状态 |
 |--------|--------|----------|------|
 | P0 | 统一入口：`./start.sh` 与 `./stop.sh`（自动选 CPU/GPU） | 用户只记两条命令，出错时也只需查 start/stop | ✅ 已完成 |
-| P0 | 修正 README Quick start：默认模型写清 CPU=GGUF、GPU=HF，并与当前代码一致 | 减少「我到底用的哪个模型」的困惑 | ✅ 已完成（CPU 与 GPU 默认模型统一为 Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF） |
+| P0 | 修正 README Quick start：默认模型写清 CPU=GGUF、GPU=HF，并与当前代码一致 | 减少「我到底用的哪个模型」的困惑 | ✅ 已完成（CPU 与 GPU 默认模型统一为 Qwen3.5-2B） |
 | P1 | run-codex 在 proxy 不可达时，提示「请确认已在另一终端运行 ./start-*.sh 且未关闭」 | 减少「服务没开」类困惑 | ✅ 已完成 |
 | P1 | start 脚本结尾打印停止方式（Ctrl+C 或 ./stop.sh） | 停止方式更可发现 | ✅ 已完成 |
 | P2 | 拷盘清单 + 可选 check-portable.sh | 减少漏拷导致的离线失败 | ✅ 已完成 |
@@ -78,7 +78,7 @@
 
 ## 四、README 与文档可立刻修的一处
 
-- ✅ **Quick start 第 1 步**：已修正。CPU 和 GPU 默认统一为 `Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF`。README 中已明确说明。
+- ✅ **Quick start 第 1 步**：已修正。CPU 和 GPU 默认统一为 Qwen3.5-2B（CPU：bartowski/Qwen_Qwen3.5-2B-GGUF，GPU：Qwen/Qwen3.5-2B）。README 中已明确说明。
 
 ## 五、已实现的额外改进（v0.4.x）
 

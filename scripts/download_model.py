@@ -4,8 +4,8 @@
 Usage:
   python scripts/download_model.py <ROOT> [REPO_ID]
 
-  REPO_ID: Hugging Face repo (GGUF for llama.cpp, e.g. Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF). Omit for default.
-  Default: Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF.
+  REPO_ID: Hugging Face repo (GGUF for llama.cpp, e.g. bartowski/Qwen_Qwen3.5-2B-GGUF). Omit for default.
+  Default: bartowski/Qwen_Qwen3.5-2B-GGUF (Qwen3.5-2B for CPU/llama.cpp).
 
   Use project .venv: .venv/bin/python scripts/download_model.py <ROOT> [REPO_ID]
 """
@@ -14,7 +14,7 @@ from __future__ import annotations
 import os
 import sys
 
-DEFAULT_REPO = "Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF"
+DEFAULT_REPO = "bartowski/Qwen_Qwen3.5-2B-GGUF"
 
 
 def main() -> None:

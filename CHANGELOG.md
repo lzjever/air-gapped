@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.5.0] - 2026-03-03
+
+### Changed
+
+- **Default model:** CPU and GPU now use **Qwen 3.5 latest** (千问 3.5 最新版). Same model: [Qwen/Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B). CPU uses GGUF from [bartowski/Qwen_Qwen3.5-2B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF); GPU uses the Hugging Face repo directly.
+- **Test timeouts:** vLLM startup 180s → 900s; llama-server startup 120s → 300s (first-time download).
+
+---
+
 ## [0.4.0] - 2026-03-01
 
 ### Added

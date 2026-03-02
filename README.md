@@ -25,6 +25,8 @@ Air-gapped ops: no internet, no devices, no docs, no AI. Long K8s commands and c
 
 Use it for **deployment, configuration, runbooks, and troubleshooting**—without leaving the room or touching the cloud.
 
+**Default model:** [Qwen 3.5 latest](https://huggingface.co/Qwen/Qwen3.5-2B) (千问 3.5 最新版) — CPU and GPU both use this model (GGUF for llama.cpp, Hugging Face for vLLM).
+
 ---
 
 ## Quick start (3 steps)
@@ -37,7 +39,7 @@ Use a terminal in this project folder.
 ./bootstrap.sh
 ```
 
-This downloads the llama.cpp prebuilt binary (Linux x64 CPU), builds **codex-proxy**, downloads the default CPU model (GGUF, see [Optional: different model](#optional-different-model-or-port) for the repo), and writes Codex config (pointing at the proxy). When it finishes: `[bootstrap] Done. Next: ...`
+This downloads the llama.cpp prebuilt binary (Linux x64 CPU), builds **codex-proxy**, downloads the default CPU model (Qwen3.5-2B GGUF, see [Optional: different model](#optional-different-model-or-port) for the repo), and writes Codex config (pointing at the proxy). When it finishes: `[bootstrap] Done. Next: ...`
 
 ### 2. Start the backend (one terminal — keep it open)
 
@@ -130,7 +132,7 @@ If vLLM hits **CUDA out of memory**, lower context or VRAM: `VLLM_MAX_MODEL_LEN=
 
 **CPU (llama.cpp) — GGUF models:**
 
-- Default: [Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF](https://huggingface.co/Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF) (GGUF for llama.cpp).
+- Default: [Qwen/Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B) via GGUF — [bartowski/Qwen_Qwen3.5-2B-GGUF](https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF) (llama.cpp).
 - To use another Hugging Face repo (GGUF or compatible), re-run bootstrap with the repo id; this downloads the new model and updates `.codex/config.toml` and `.codex/model_info`:
 
   ```bash
@@ -139,9 +141,9 @@ If vLLM hits **CUDA out of memory**, lower context or VRAM: `VLLM_MAX_MODEL_LEN=
 
 - Then start the server as usual: `./start-llama-server.sh`. The new model is loaded from `models/<repo-name>/`.
 
-**GPU (vLLM) — HuggingFace format (same model family):**
+**GPU (vLLM) — HuggingFace format (same model):**
 
-- Default vLLM model (when you used `USE_VLLM=1`): [Nanbeige/Nanbeige4.1-3B](https://huggingface.co/Nanbeige/Nanbeige4.1-3B) (full-precision, same model family as the CPU GGUF). Started with max 1 concurrent, auto-detected context length, high VRAM use (0.95).
+- Default vLLM model (when you used `USE_VLLM=1`): [Qwen/Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B) (full-precision). Started with max 1 concurrent, auto-detected context length, high VRAM use (0.95).
 - To use another Hugging Face model, re-run bootstrap with vLLM and set `VLLM_MODEL`:
 
   ```bash
@@ -150,7 +152,7 @@ If vLLM hits **CUDA out of memory**, lower context or VRAM: `VLLM_MAX_MODEL_LEN=
 
 - Then start vLLM: `./start-vllm.sh`. vLLM will use the model specified in `.codex/model_info` (`VLLM_MODEL`).
 
-**Note:** CPU uses GGUF (quantized, for llama.cpp); GPU uses HuggingFace safetensors (full-precision, for vLLM). Both are Nanbeige4.1-3B — same model family, different formats optimized for each runtime. On GPU, quantization isn't needed.
+**Note:** CPU uses GGUF (quantized, for llama.cpp); GPU uses HuggingFace safetensors (full-precision, for vLLM). Both default to **Qwen3.5-2B** — same model, different formats for each runtime. On GPU, quantization isn't needed.
 
 ---
 

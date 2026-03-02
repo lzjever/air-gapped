@@ -39,7 +39,7 @@ fi
 
 # 2) Start vLLM + proxy (use conservative GPU settings to avoid OOM on smaller GPUs)
 echo "--- Starting vLLM + codex-proxy..."
-START_TIMEOUT="${VLLM_START_TIMEOUT:-180}"
+START_TIMEOUT="${VLLM_START_TIMEOUT:-900}"
 mkdir -p "$ROOT/.codex"
 # Let start-vllm.sh auto-detect GPU resources (max_model_len, gpu_memory_utilization).
 # Override only if you need specific test values via VLLM_MAX_MODEL_LEN / VLLM_GPU_MEM_UTIL.

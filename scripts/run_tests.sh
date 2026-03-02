@@ -24,7 +24,7 @@ fi
 
 # 2) Start llama-server
 echo "--- Starting llama-server..."
-START_TIMEOUT="${LLAMA_START_TIMEOUT:-120}"
+START_TIMEOUT="${LLAMA_START_TIMEOUT:-300}"
 mkdir -p "$ROOT/.codex"
 ./start-llama-server.sh > "$ROOT/.codex/llama-server.log" 2>&1 &
 SERVER_PID=$!
@@ -70,7 +70,7 @@ if curl -sf "http://127.0.0.1:$PROXY_PORT/health" >/dev/null 2>&1; then
   fi
 
   source "$ROOT/.codex/model_info"
-  _model="${SERVED_MODEL_NAME:-Nanbeige4.1-3B-Q4_K_M-GGUF}"
+  _model="${SERVED_MODEL_NAME:-Qwen_Qwen3.5-2B-GGUF}"
 
   echo "--- Proxy: POST /v1/chat/completions (non-streaming passthrough)"
   _proxy_chat="$ROOT/.codex/test_proxy_chat.json"

@@ -37,8 +37,8 @@ if [[ -z "$LLAMA_SERVER" ]] || [[ ! -x "$LLAMA_SERVER" ]]; then
 fi
 echo "[bootstrap] Using llama-server at $LLAMA_SERVER"
 
-# 4. Model for CPU/llama.cpp: must be a GGUF repo. Default: Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF
-HF_MODEL_REPO_ID="${HF_MODEL_REPO_ID:-Edge-Quant/Nanbeige4.1-3B-Q4_K_M-GGUF}"
+# 4. Model for CPU/llama.cpp: must be a GGUF repo. Default: bartowski/Qwen_Qwen3.5-2B-GGUF (Qwen3.5-2B)
+HF_MODEL_REPO_ID="${HF_MODEL_REPO_ID:-bartowski/Qwen_Qwen3.5-2B-GGUF}"
 MODEL_NAME="${HF_MODEL_REPO_ID##*/}"
 MODEL_DIR="$ROOT/models/$MODEL_NAME"
 if [[ ! -d "$MODEL_DIR" ]] || [[ -z "$(ls -A "$MODEL_DIR" 2>/dev/null)" ]]; then
@@ -65,7 +65,7 @@ echo "LLAMA_SERVER=\"$LLAMA_SERVER\"" >> "$ROOT/.codex/model_info"
 if [[ "${USE_VLLM:-0}" == "1" ]]; then
   echo "[bootstrap] Installing vLLM (GPU) ..."
   uv pip install --quiet "vllm>=0.6.0"
-  VLLM_MODEL="${VLLM_MODEL:-Nanbeige/Nanbeige4.1-3B}"
+  VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen3.5-2B}"
   VLLM_SERVED_NAME="${VLLM_MODEL##*/}"
   echo "VLLM_MODEL=\"$VLLM_MODEL\"" >> "$ROOT/.codex/model_info"
   echo "VLLM_SERVED_NAME=\"$VLLM_SERVED_NAME\"" >> "$ROOT/.codex/model_info"

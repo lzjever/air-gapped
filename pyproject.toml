@@ -1,6 +1,6 @@
 [project]
 name = "air-gapped-codex-llamacpp"
-version = "0.4.0"
+version = "0.5.0"
 description = "Portable Codex CLI + llama.cpp (CPU) for air-gapped use"
 readme = "README.md"
 requires-python = ">=3.10"

@@ -9,7 +9,7 @@ if ! curl -sf "http://127.0.0.1:$PORT/v1/models" >/dev/null 2>&1; then
   exit 1
 fi
 echo "Listing models (GET http://127.0.0.1:$PORT/v1/models)..."
-MODEL_FOR_TEST="Nanbeige4.1-3B-Q4_K_M-GGUF"
+MODEL_FOR_TEST="Qwen_Qwen3.5-2B-GGUF"
 [[ -f "$ROOT/.codex/model_info" ]] && source "$ROOT/.codex/model_info" && MODEL_FOR_TEST="$SERVED_MODEL_NAME"
 curl -s "http://127.0.0.1:$PORT/v1/models" | head -50
 echo ""
